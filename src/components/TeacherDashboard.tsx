@@ -159,7 +159,7 @@ export default function TeacherDashboard({ user, onLogout }: TeacherDashboardPro
                   <li>• تأكد من كتابة اسم الطالب كاملاً وصحيحاً</li>
                 </ul>
               </div>
-            </div> {/* تم إغلاق div بشكل صحيح هنا */}
+            </div> {/* تعليق مغلق بشكل صحيح */}
           ) : (
             <div className="animate-fade-in">
               <h2 className="text-xl font-bold text-blue-800 mb-6 text-center">
