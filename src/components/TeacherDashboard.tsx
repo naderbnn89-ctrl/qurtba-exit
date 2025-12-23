@@ -82,21 +82,13 @@ export default function TeacherDashboard({ user, onLogout }: TeacherDashboardPro
         <div className="flex border-b border-blue-100">
           <button
             onClick={() => setActiveTab("send")}
-            className={`flex-1 py-4 px-6 text-center font-semibold transition-all duration-300 ${
-              activeTab === "send"
-                ? "bg-blue-600 text-white rounded-tl-2xl"
-                : "text-blue-600 hover:bg-blue-50"
-            }`}
+            className={`flex-1 py-4 px-6 text-center font-semibold transition-all duration-300 ${activeTab === "send" ? "bg-blue-600 text-white rounded-tl-2xl" : "text-blue-600 hover:bg-blue-50"}`}
           >
             إرسال تصريح
           </button>
           <button
             onClick={() => setActiveTab("history")}
-            className={`flex-1 py-4 px-6 text-center font-semibold transition-all duration-300 ${
-              activeTab === "history"
-                ? "bg-blue-600 text-white rounded-tr-2xl"
-                : "text-blue-600 hover:bg-blue-50"
-            }`}
+            className={`flex-1 py-4 px-6 text-center font-semibold transition-all duration-300 ${activeTab === "history" ? "bg-blue-600 text-white rounded-tr-2xl" : "text-blue-600 hover:bg-blue-50"}`}
           >
             السجل
           </button>
@@ -108,7 +100,7 @@ export default function TeacherDashboard({ user, onLogout }: TeacherDashboardPro
               <h2 className="text-xl font-bold text-blue-800 mb-6 text-center">
                 إرسال تصريح خروج جديد
               </h2>
-              
+
               {/* معلومات تلقائية */}
               <div className="bg-blue-50 rounded-xl p-4 mb-6 border border-blue-200 animate-slide-up">
                 <h3 className="font-bold text-blue-800 mb-3 text-center">معلومات التصريح</h3>
@@ -123,7 +115,7 @@ export default function TeacherDashboard({ user, onLogout }: TeacherDashboardPro
                   </div>
                 </div>
               </div>
-              
+
               <form onSubmit={handleSendPermission} className="space-y-6">
                 <div className="animate-slide-up animation-delay-200">
                   <label className="block text-blue-800 font-semibold mb-3 text-right text-lg">
@@ -167,43 +159,43 @@ export default function TeacherDashboard({ user, onLogout }: TeacherDashboardPro
                   <li>• تأكد من كتابة اسم الطالب كاملاً وصحيحاً</li>
                 </ul>
               </div>
-            </div
+            </div> {/* تم إغلاق div بشكل صحيح هنا */}
           ) : (
             <div className="animate-fade-in">
               <h2 className="text-xl font-bold text-blue-800 mb-6 text-center">
                 سجل التصاريح
               </h2>
+            </div>
+          )}
 
-              {teacherPermissions?.studentStats && teacherPermissions.studentStats.length > 0 ? (
-                <div className="space-y-4">
-                  {teacherPermissions.studentStats.map((student, index) => (
-                    <div
-                      key={student.studentName}
-                      className="bg-blue-50 rounded-xl p-4 border border-blue-200 animate-slide-up"
-                      style={{ animationDelay: `${index * 100}ms` }}
-                    >
-                      <div className="flex justify-between items-center">
-                        <div className="text-right">
-                          <h3 className="font-bold text-blue-800 text-lg">
-                            {student.studentName}
-                          </h3>
-                          <p className="text-blue-600">
-                            آخر خروج: {new Date(student.lastExit).toLocaleString("ar-SA")}
-                          </p>
-                        </div>
-                        <div className="bg-blue-600 text-white px-4 py-2 rounded-full font-bold">
-                          {student.count} مرة
-                        </div>
-                      </div>
+          {teacherPermissions?.studentStats && teacherPermissions.studentStats.length > 0 ? (
+            <div className="space-y-4">
+              {teacherPermissions.studentStats.map((student, index) => (
+                <div
+                  key={student.studentName}
+                  className="bg-blue-50 rounded-xl p-4 border border-blue-200 animate-slide-up"
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <div className="flex justify-between items-center">
+                    <div className="text-right">
+                      <h3 className="font-bold text-blue-800 text-lg">
+                        {student.studentName}
+                      </h3>
+                      <p className="text-blue-600">
+                        آخر خروج: {new Date(student.lastExit).toLocaleString("ar-SA")}
+                      </p>
                     </div>
-                  ))}
+                    <div className="bg-blue-600 text-white px-4 py-2 rounded-full font-bold">
+                      {student.count} مرة
+                    </div>
+                  </div>
                 </div>
-              ) : (
-                <div className="text-center py-12 animate-fade-in">
-                  <div className="text-6xl mb-4">📋</div>
-                  <p className="text-blue-600 text-lg">لا توجد تصاريح مرسلة بعد</p>
-                </div>
-              )}
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12 animate-fade-in">
+              <div className="text-6xl mb-4">📋</div>
+              <p className="text-blue-600 text-lg">لا توجد تصاريح مرسلة بعد</p>
             </div>
           )}
         </div>
